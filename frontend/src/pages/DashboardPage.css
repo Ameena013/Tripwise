@@ -1,0 +1,163 @@
+.dashboard-page { padding: 48px 0 80px; min-height: calc(100vh - 64px); }
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  gap: 16px;
+}
+
+.dashboard-header h1 { font-size: 2rem; margin-bottom: 6px; }
+.dashboard-header p { color: var(--muted); font-size: 0.95rem; }
+
+.dashboard-loading {
+  display: flex;
+  justify-content: center;
+  padding: 80px 0;
+}
+
+/* ── Empty ───────────────────────────────────────────────────────────────────── */
+.dashboard-empty {
+  text-align: center;
+  padding: 80px 24px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.empty-icon { font-size: 3.5rem; margin-bottom: 20px; }
+.dashboard-empty h2 { font-size: 1.5rem; margin-bottom: 10px; }
+.dashboard-empty p { color: var(--muted); line-height: 1.7; margin-bottom: 28px; }
+
+/* ── Grid ────────────────────────────────────────────────────────────────────── */
+.itineraries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+/* ── Card ────────────────────────────────────────────────────────────────────── */
+.iti-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.iti-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.iti-card.processing { border-color: var(--gold); }
+
+.iti-card-header { flex: 1; }
+
+.iti-card-title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.iti-card-title h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1.3;
+  flex: 1;
+}
+
+.iti-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.iti-card-meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.share-tag {
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 0.72rem !important;
+  font-weight: 600;
+}
+.share-tag.public { background: rgba(26,92,90,0.1); color: var(--teal); }
+.share-tag.private { background: var(--cream); color: var(--muted); }
+
+.iti-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid var(--cream);
+}
+
+.iti-card-date { font-size: 0.78rem; color: var(--muted); }
+
+.iti-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-sm { padding: 7px 14px; font-size: 0.8rem; }
+
+.btn-icon-danger {
+  background: none;
+  border: none;
+  color: var(--muted);
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  transition: all var(--transition);
+}
+.btn-icon-danger:hover { color: var(--error); background: #fdecea; }
+
+/* ── Processing card animation ───────────────────────────────────────────────── */
+@keyframes cardProgress {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(100%); }
+}
+
+.card-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--cream);
+  overflow: hidden;
+}
+
+.card-progress-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  animation: cardProgress 1.5s ease-in-out infinite;
+}
+
+/* ── Pagination ──────────────────────────────────────────────────────────────── */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 40px;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .dashboard-header { flex-direction: column; align-items: flex-start; }
+  .itineraries-grid { grid-template-columns: 1fr; }
+}
